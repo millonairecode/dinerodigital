@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DINERO DIGITAL — Monetiza tus Redes Sociales</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F0D060;
+  --gold-dark: #A8860A;
+  --black: #080808;
+  --dark: #0F0F0F;
+  --dark2: #161616;
+  --dark3: #1E1E1E;
+  --gray: #666;
+  --gray-light: #999;
+  --light: #F5F0E8;
+  --white: #FFFFFF;
+  --fb: #1877F2;
+  --tt: #EE1D52;
+  --yt: #FF0000;
+  --green: #22C55E;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--light);
+  overflow-x: hidden;
+}
+
+/* ===== NOISE OVERLAY ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: relative;
+  z-index: 100;
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(212,175,55,0.1);
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -1px;
+}
+
+.nav-cta {
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 50%, rgba(24,119,242,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 90% 60%, rgba(255,0,0,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 30% at 50% 100%, rgba(238,29,82,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Animated grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 0%, black 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  animation: fadeDown 0.8s ease both;
+}
+
+.hero-badge-dot {
+  width: 6px; height: 6px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 10vw, 130px);
+  font-weight: 900;
+  line-height: 0.88;
+  color: var(--white);
+  margin-bottom: 10px;
+  animation: fadeDown 0.8s 0.1s ease both;
+}
+
+.hero-title-gold {
+  color: var(--gold);
+  display: block;
+  font-style: italic;
+}
+
+.hero-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--gray-light);
+  max-width: 580px;
+  line-height: 1.7;
+  margin: 30px auto 50px;
+  animation: fadeDown 0.8s 0.2s ease both;
+}
+
+.hero-platforms {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 60px;
+  animation: fadeDown 0.8s 0.3s ease both;
+}
+
+.platform-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid;
+}
+.pt-fb { color: var(--fb); border-color: rgba(24,119,242,0.4); background: rgba(24,119,242,0.08); }
+.pt-tt { color: var(--tt); border-color: rgba(238,29,82,0.4); background: rgba(238,29,82,0.08); }
+.pt-yt { color: var(--yt); border-color: rgba(255,0,0,0.4); background: rgba(255,0,0,0.08); }
+
+.hero-cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  animation: fadeDown 0.8s 0.4s ease both;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 20px 48px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 20px 60px rgba(212,175,55,0.3); }
+
+.btn-secondary {
+  color: var(--gray-light);
+  font-size: 14px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+}
+.btn-secondary:hover { color: var(--white); }
+
+.hero-social-proof {
+  margin-top: 80px;
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+  animation: fadeDown 0.8s 0.5s ease both;
+}
+
+.sp-item { text-align: center; }
+.sp-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+.sp-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gray);
+  text-transform: uppercase;
+  margin-top: 6px;
+  display: block;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section {
+  border-top: 1px solid rgba(212,175,55,0.1);
+  border-bottom: 1px solid rgba(212,175,55,0.1);
+  padding: 18px 0;
+  overflow: hidden;
+  background: rgba(212,175,55,0.03);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  animation: marquee 25s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: rgba(212,175,55,0.5);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ===== SECTION BASE ===== */
+section { padding: 120px 60px; }
+.container { max-width: 1100px; margin: 0 auto; }
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+
+.section-title em { color: var(--gold); font-style: italic; }
+
+.section-desc {
+  font-size: 17px;
+  color: var(--gray-light);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+/* ===== PROBLEMA ===== */
+.problem-section {
+  background: var(--dark2);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.problem-list { list-style: none; }
+.problem-list li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 15px;
+  color: rgba(245,240,232,0.75);
+  line-height: 1.6;
+}
+.problem-list li:last-child { border-bottom: none; }
+
+.problem-x {
+  width: 28px; height: 28px;
+  background: rgba(255,107,53,0.15);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #FF8C6B;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.solution-card {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 16px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.solution-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(212,175,55,0.06), transparent);
+  pointer-events: none;
+}
+
+.solution-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.solution-card p {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.solution-check-list { list-style: none; }
+.solution-check-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: rgba(245,240,232,0.85);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.solution-check-list li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ===== PLATAFORMAS ===== */
+.platforms-section { background: var(--black); }
+
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.platform-card {
+  background: var(--dark2);
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.platform-card:hover { background: var(--dark3); }
+
+.platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.pc-fb::before { background: var(--fb); }
+.pc-tt::before { background: linear-gradient(90deg, var(--tt), #69C9D0); }
+.pc-yt::before { background: var(--yt); }
+
+.platform-card-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.platform-card-name {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.pc-fb .platform-card-name { color: var(--fb); }
+.pc-tt .platform-card-name { color: var(--tt); }
+.pc-yt .platform-card-name { color: var(--yt); }
+
+.platform-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+
+.platform-card p {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.platform-features { list-style: none; }
+.platform-features li {
+  font-size: 13px;
+  color: rgba(245,240,232,0.7);
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  gap: 10px;
+  line-height: 1.4;
+}
+.platform-features li:last-child { border-bottom: none; }
+.platform-features li::before {
+  content: '→';
+  font-family: 'Space Mono', monospace;
+  flex-shrink: 0;
+}
+.pc-fb .platform-features li::before { color: var(--fb); }
+.pc-tt .platform-features li::before { color: var(--tt); }
+.pc-yt .platform-features li::before { color: var(--yt); }
+
+/* ===== CONTENIDO DEL EBOOK ===== */
+.content-section { background: var(--dark2); }
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 60px;
+}
+
+.ebook-mockup {
+  position: sticky;
+  top: 120px;
+}
+
+.ebook-cover {
+  background: var(--black);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 8px;
+  padding: 48px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 30px 30px 80px rgba(0,0,0,0.8), -5px -5px 30px rgba(212,175,55,0.05);
+  transform: perspective(1000px) rotateY(-8deg) rotateX(2deg);
+  transition: transform 0.4s;
+}
+.ebook-cover:hover { transform: perspective(1000px) rotateY(-3deg) rotateX(1deg); }
+
+.ebook-cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(212,175,55,0.1), transparent);
+  pointer-events: none;
+}
+
+.ebook-cover-spine {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 20px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.4), rgba(212,175,55,0.1), rgba(212,175,55,0.4));
+  border-radius: 8px 0 0 8px;
+}
+
+.ebook-cover-badge {
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 6px 14px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.ebook-cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 0.88;
+  color: var(--white);
+}
+.ebook-cover-title span { color: var(--gold); display: block; }
+
+.ebook-cover-sub {
+  font-size: 12px;
+  color: var(--gray-light);
+  margin: 20px 0 30px;
+  line-height: 1.5;
+}
+
+.ebook-cover-platforms {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.ecp { padding: 5px 12px; border-radius: 20px; font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 1px; border: 1px solid; }
+.ecp-fb { color: var(--fb); border-color: rgba(24,119,242,0.4); }
+.ecp-tt { color: var(--tt); border-color: rgba(238,29,82,0.4); }
+.ecp-yt { color: var(--yt); border-color: rgba(255,0,0,0.4); }
+
+.ebook-pages-count {
+  margin-top: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(212,175,55,0.5);
+}
+
+/* Chapter list */
+.chapters-list { list-style: none; }
+.chapter-item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.chapter-item:last-child { border-bottom: none; }
+
+.chapter-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: rgba(212,175,55,0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 40px;
+}
+
+.chapter-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.chapter-info p {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.5;
+}
+
+.chapter-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.ct-fb { background: rgba(24,119,242,0.12); color: var(--fb); }
+.ct-tt { background: rgba(238,29,82,0.12); color: var(--tt); }
+.ct-yt { background: rgba(255,0,0,0.12); color: var(--yt); }
+.ct-gold { background: rgba(212,175,55,0.12); color: var(--gold); }
+
+/* ===== INCOME CALCULATOR ===== */
+.calculator-section { background: var(--black); }
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 60px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.calc-card {
+  background: var(--dark2);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.calc-card-platform {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: block;
+}
+.cc-fb .calc-card-platform { color: var(--fb); }
+.cc-tt .calc-card-platform { color: var(--tt); }
+.cc-yt .calc-card-platform { color: var(--yt); }
+
+.calc-card-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.calc-card-period {
+  font-size: 13px;
+  color: var(--gray);
+  margin-bottom: 30px;
+}
+
+.calc-sources { list-style: none; text-align: left; }
+.calc-sources li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 12px;
+  color: var(--gray-light);
+}
+.calc-sources li:last-child { border-bottom: none; }
+.calc-source-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--green);
+}
+
+.calc-total-row {
+  background: rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.15);
+  border-radius: 12px;
+  padding: 32px;
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-total-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.calc-total-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.calc-total-sub {
+  font-size: 13px;
+  color: var(--gray);
+}
+
+/* ===== TESTIMONIOS ===== */
+.testimonials-section { background: var(--dark2); }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.testimonial-card {
+  background: var(--dark3);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  font-family: 'Playfair Display', serif;
+  font-size: 80px;
+  color: rgba(212,175,55,0.1);
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  line-height: 1;
+}
+
+.stars {
+  color: var(--gold);
+  font-size: 14px;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+
+.testimonial-text {
+  font-size: 14px;
+  color: rgba(245,240,232,0.8);
+  line-height: 1.8;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  background: var(--dark2);
+  border: 1px solid rgba(212,175,55,0.2);
+  flex-shrink: 0;
+}
+
+.author-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.author-location {
+  font-size: 11px;
+  color: var(--gray);
+  margin-top: 2px;
+}
+
+.author-income {
+  margin-left: auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ===== BONUS ===== */
+.bonus-section { background: var(--black); }
+
+.bonus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.bonus-card {
+  background: var(--dark2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.bonus-card:hover { border-color: rgba(212,175,55,0.3); transform: translateY(-4px); }
+
+.bonus-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+.bonus-card-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.bonus-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.bonus-card p {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.6;
+}
+.bonus-value {
+  position: absolute;
+  top: 20px; right: 20px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(34,197,94,0.7);
+  background: rgba(34,197,94,0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+
+/* ===== PRICING ===== */
+.pricing-section {
+  background: var(--dark2);
+  text-align: center;
+}
+
+.pricing-card {
+  max-width: 560px;
+  margin: 60px auto 0;
+  background: var(--black);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 20px;
+  padding: 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--fb), var(--tt), var(--yt), var(--gold));
+}
+
+.pricing-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(212,175,55,0.06), transparent);
+  pointer-events: none;
+}
+
+.pricing-badge {
+  display: inline-block;
+  background: rgba(34,197,94,0.12);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: var(--green);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+
+.pricing-original {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  color: var(--gray);
+  text-decoration: line-through;
+  margin-bottom: 8px;
+}
+
+.pricing-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 96px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pricing-price sup {
+  font-size: 36px;
+  vertical-align: top;
+  margin-top: 18px;
+  display: inline-block;
+}
+
+.pricing-currency {
+  font-size: 16px;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.pricing-includes {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.pricing-includes li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 14px;
+  color: rgba(245,240,232,0.85);
+  line-height: 1.5;
+}
+.pricing-includes li:last-child { border-bottom: none; }
+.pricing-includes li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pricing-cta {
+  display: block;
+  width: 100%;
+  background: var(--gold);
+  color: var(--black);
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 22px;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.pricing-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+}
+.pricing-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 20px 60px rgba(212,175,55,0.4); }
+
+.pricing-guarantee {
+  font-size: 12px;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ===== FAQ ===== */
+.faq-section { background: var(--black); }
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 60px;
+}
+
+.faq-item {
+  background: var(--dark2);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 28px 32px;
+  transition: border-color 0.2s;
+}
+.faq-item:hover { border-color: rgba(212,175,55,0.2); }
+
+.faq-q {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.faq-q::before {
+  content: 'Q';
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--gold);
+  background: rgba(212,175,55,0.1);
+  width: 24px; height: 24px;
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.faq-a {
+  font-size: 13px;
+  color: var(--gray-light);
+  line-height: 1.7;
+  padding-left: 36px;
+}
+
+/* ===== URGENCIA ===== */
+.urgency-section {
+  background: linear-gradient(135deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+  border-top: 1px solid rgba(212,175,55,0.15);
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  text-align: center;
+  padding: 80px 60px;
+}
+
+.urgency-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+.urgency-title em { color: var(--gold); font-style: italic; }
+
+.urgency-sub {
+  font-size: 17px;
+  color: var(--gray-light);
+  max-width: 520px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  padding: 60px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.footer-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gray);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+.footer-copy {
+  font-size: 12px;
+  color: rgba(102,102,102,0.5);
+}
+
+/* ===== CLASES EN VIVO ===== */
+.live-section {
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.live-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(238,29,82,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 50%, rgba(212,175,55,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 90% 50%, rgba(24,119,242,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.live-hero {
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(238,29,82,0.12);
+  border: 1px solid rgba(238,29,82,0.5);
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #FF6B8A;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  animation: livePulse 2s infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238,29,82,0.3); }
+  50% { box-shadow: 0 0 0 12px rgba(238,29,82,0); }
+}
+
+.live-dot {
+  width: 10px; height: 10px;
+  background: #EE1D52;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+  flex-shrink: 0;
+}
+
+.live-main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 7vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.live-main-title span {
+  display: block;
+  background: linear-gradient(135deg, #EE1D52, #FF6B8A, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.live-subtitle {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--gray-light);
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+
+.live-card-big {
+  background: linear-gradient(135deg, rgba(238,29,82,0.1), rgba(212,175,55,0.05), rgba(24,119,242,0.05));
+  border: 1px solid rgba(238,29,82,0.3);
+  border-radius: 20px;
+  padding: 50px 48px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.live-card-big::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #EE1D52, #FFD700, #1877F2);
+}
+
+.live-card-big-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.live-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 100px;
+  position: relative;
+}
+
+.live-icon-wrap::before {
+  content: '';
+  position: absolute;
+  width: 180px; height: 180px;
+  background: radial-gradient(ellipse, rgba(238,29,82,0.15), transparent 70%);
+  border-radius: 50%;
+}
+
+.live-card-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #EE1D52;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.live-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.live-card-desc {
+  font-size: 15px;
+  color: var(--gray-light);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.live-features {
+  list-style: none;
+  margin-bottom: 36px;
+}
+.live-features li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+  color: rgba(245,240,232,0.85);
+  line-height: 1.5;
+}
+.live-features li:last-child { border-bottom: none; }
+.live-features li::before {
+  content: '🔴';
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.live-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #EE1D52, #C4002E);
+  color: white;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 18px 36px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 10px 40px rgba(238,29,82,0.3);
+}
+.live-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 60px rgba(238,29,82,0.4); }
+
+.live-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.live-mini-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.live-mini-card:hover { border-color: rgba(238,29,82,0.3); transform: translateY(-3px); }
+
+.live-mini-icon { font-size: 32px; margin-bottom: 12px; display: block; }
+.live-mini-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+.live-mini-desc { font-size: 12px; color: var(--gray-light); line-height: 1.6; }
+
+/* ===== RESPONSIVE COMPLETO ===== */
+@media (max-width: 768px) {
+  /* NAV */
+  nav { padding: 14px 20px; }
+  .nav-logo { font-size: 18px; }
+  .nav-cta { padding: 10px 16px; font-size: 10px; }
+
+  /* SECTIONS */
+  section { padding: 70px 20px; }
+  .hero { padding: 90px 20px 60px; }
+
+  /* HERO */
+  .hero-badge { font-size: 9px; letter-spacing: 2px; padding: 7px 16px; }
+  .hero-platforms { flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .platform-tag { font-size: 10px; padding: 8px 14px; }
+  .hero-cta-group { flex-direction: column; align-items: center; gap: 16px; }
+  .btn-primary { padding: 18px 36px; font-size: 12px; width: 100%; text-align: center; }
+  .hero-social-proof { gap: 20px; flex-wrap: wrap; justify-content: center; }
+  .sp-num { font-size: 30px; }
+  .sp-label { font-size: 8px; }
+
+  /* PROBLEMA */
+  .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+  .solution-card { padding: 32px 24px; }
+
+  /* PLATAFORMAS */
+  .platforms-grid { grid-template-columns: 1fr; gap: 2px; }
+  .platform-card { padding: 36px 28px; }
+
+  /* CONTENIDO */
+  .content-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ebook-mockup { position: static; }
+  .ebook-cover { transform: none; padding: 36px 28px; }
+  .ebook-cover:hover { transform: none; }
+  .ebook-cover-title { font-size: 40px; }
+
+  /* CALC */
+  .calc-grid { grid-template-columns: 1fr; gap: 2px; }
+  .calc-total-row { flex-direction: column; gap: 16px; text-align: center; }
+  .calc-total-amount { font-size: 48px; }
+
+  /* TESTIMONIOS */
+  .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+  .author-income { font-size: 11px; }
+
+  /* BONUS */
+  .bonus-grid { grid-template-columns: 1fr; gap: 14px; }
+  .bonus-card { padding: 24px; }
+
+  /* LIVE */
+  .live-card-big { padding: 32px 24px; }
+  .live-card-big-inner { grid-template-columns: 1fr; gap: 30px; }
+  .live-icon-wrap { font-size: 70px; }
+  .live-icon-wrap::before { width: 120px; height: 120px; }
+  .live-mini-grid { grid-template-columns: 1fr; gap: 12px; }
+  .live-cta-btn { width: 100%; justify-content: center; }
+
+  /* PRICING */
+  .pricing-card { padding: 40px 24px; margin: 40px 16px 0; }
+  .pricing-price { font-size: 72px; }
+  .pricing-cta { font-size: 12px; padding: 18px; }
+
+  /* FAQ */
+  .faq-grid { grid-template-columns: 1fr; gap: 12px; }
+  .faq-item { padding: 22px 24px; }
+
+  /* URGENCY */
+  .urgency-section { padding: 70px 20px; }
+
+  /* FOOTER */
+  footer { padding: 50px 20px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; justify-content: center; }
+
+  /* FLOATING CTA */
+  .floating-cta { bottom: 16px; right: 16px; left: 16px; justify-content: center; }
+
+  /* SECTION TITLES */
+  .section-title { font-size: 32px; }
+  .section-desc { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Dinero Digital</div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <a href="#clases-vivo" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:rgba(238,29,82,0.8);text-decoration:none;display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;background:#EE1D52;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite;"></span>CLASES EN VIVO</a>
+    <a href="#precio" class="nav-cta">Quiero el Ebook</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Guía Completa · Edición 2026
+  </div>
+
+  <h1 class="hero-title">
+    DINERO
+    <span class="hero-title-gold">DIGITAL</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    El sistema completo para convertir Facebook, TikTok y YouTube en fuentes de ingresos reales. Más de 100 páginas de estrategias probadas, herramientas de IA y el camino exacto de $0 a $10,000/mes.
+  </p>
+
+  <div class="hero-platforms">
+    <div class="platform-tag pt-fb">📘 Facebook</div>
+    <div class="platform-tag pt-tt">🎵 TikTok</div>
+    <div class="platform-tag pt-yt">▶️ YouTube</div>
+  </div>
+
+  <div class="hero-cta-group">
+    <a href="#precio" class="btn-primary">Quiero Monetizar Ahora →</a>
+    <a href="#contenido" class="btn-secondary">Ver qué incluye ↓</a>
+  </div>
+
+  <div class="hero-social-proof">
+    <div class="sp-item">
+      <span class="sp-num">100+</span>
+      <span class="sp-label">Páginas</span>
+    </div>
+    <div class="sp-item">
+      <span class="sp-num">3</span>
+      <span class="sp-label">Plataformas</span>
+    </div>
+    <div class="sp-item">
+      <span class="sp-num">+60</span>
+      <span class="sp-label">Estrategias</span>
+    </div>
+    <div class="sp-item">
+      <span class="sp-num">+20</span>
+      <span class="sp-label">IAs Detalladas</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Facebook In-Stream Ads</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">TikTok Creativity Program</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">YouTube Shorts Monetización</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Cuenta TikTok EE.UU.</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Canales Faceless con IA</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Afiliados desde el Día 1</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Grupos de Pago en Facebook</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">TikTok Shop Afiliados</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">SEO para YouTube</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Facebook In-Stream Ads</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">TikTok Creativity Program</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">YouTube Shorts Monetización</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Cuenta TikTok EE.UU.</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Canales Faceless con IA</span>
+    <span class="marquee-item">✦</span>
+    <span class="marquee-item">Afiliados desde el Día 1</span>
+    <span class="marquee-item">✦</span>
+  </div>
+</div>
+
+<!-- ===== PROBLEMA ===== -->
+<section class="problem-section">
+  <div class="container">
+    <span class="section-label">El problema real</span>
+    <h2 class="section-title">¿Por qué el 95% de los<br>creadores <em>no gana nada?</em></h2>
+
+    <div class="problem-grid">
+      <ul class="problem-list">
+        <li>
+          <div class="problem-x">✗</div>
+          Publican contenido sin estrategia y esperan que el algoritmo los encuentre solo
+        </li>
+        <li>
+          <div class="problem-x">✗</div>
+          No saben que Facebook puede generar $5,000/mes para creadores de LATAM con los métodos correctos
+        </li>
+        <li>
+          <div class="problem-x">✗</div>
+          Intentan monetizar TikTok desde su país sin saber que hay una solución legal disponible
+        </li>
+        <li>
+          <div class="problem-x">✗</div>
+          En YouTube se frustran antes de llegar a las 4,000 horas sin conocer los atajos correctos
+        </li>
+        <li>
+          <div class="problem-x">✗</div>
+          Dependen de una sola plataforma y cuando cambia el algoritmo, sus ingresos desaparecen
+        </li>
+        <li>
+          <div class="problem-x">✗</div>
+          No usan herramientas de IA y gastan 40 horas semanales en lo que debería tomar 8
+        </li>
+      </ul>
+
+      <div class="solution-card">
+        <div class="solution-card-title">Este ebook existe para resolver exactamente eso.</div>
+        <p>No es una guía genérica de "crea contenido de valor". Es el manual operativo con pasos específicos, números reales y herramientas concretas para cada plataforma.</p>
+        <ul class="solution-check-list">
+          <li>Requisitos exactos actualizados para monetizar en cada plataforma</li>
+          <li>Guía paso a paso para crear cuenta TikTok de EE.UU. desde LATAM</li>
+          <li>Los nichos con mayor RPM para audiencias hispanohablantes</li>
+          <li>Stack completo de IA para producir 10x más en la mitad del tiempo</li>
+          <li>Roadmap de 12 meses con metas concretas semana a semana</li>
+          <li>Casos reales con números de ingresos verificables</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLATAFORMAS ===== -->
+<section class="platforms-section">
+  <div class="container">
+    <span class="section-label">Las 3 plataformas</span>
+    <h2 class="section-title">Un sistema.<br><em>Tres máquinas de dinero.</em></h2>
+    <p class="section-desc">Cada plataforma tiene un rol específico en tu ecosistema de ingresos. Juntas generan más de lo que cada una podría por separado.</p>
+
+    <div class="platforms-grid">
+      <div class="platform-card pc-fb">
+        <span class="platform-card-icon">📘</span>
+        <div class="platform-card-name">Facebook</div>
+        <div class="platform-card-title">La Mina de Oro que Todos Ignoran</div>
+        <p>3,000 millones de usuarios. El programa de monetización más generoso de LATAM. La plataforma que más rápido convierte en ingresos reales.</p>
+        <ul class="platform-features">
+          <li>In-Stream Ads: $3–$15 RPM</li>
+          <li>Stars en Lives y Videos</li>
+          <li>Suscripciones de Fans mensuales</li>
+          <li>Grupos de Pago recurrentes</li>
+          <li>Reels Play Bonus</li>
+          <li>Estrategia de múltiples páginas</li>
+        </ul>
+      </div>
+
+      <div class="platform-card pc-tt">
+        <span class="platform-card-icon">🎵</span>
+        <div class="platform-card-name">TikTok</div>
+        <div class="platform-card-title">El Motor Viral + La Cuenta de EE.UU.</div>
+        <p>El algoritmo más democrático del mundo. Y la guía que nadie más explica bien: cómo monetizarlo desde cualquier país de LATAM.</p>
+        <ul class="platform-features">
+          <li>Creativity Program: hasta $1/1,000 views</li>
+          <li>Cómo crear cuenta de EE.UU. paso a paso</li>
+          <li>LIVE Gifts disponible en más países</li>
+          <li>TikTok Shop: 5–20% de comisión</li>
+          <li>TikTok Series (contenido de pago)</li>
+          <li>Cómo cobrar desde LATAM con Payoneer</li>
+        </ul>
+      </div>
+
+      <div class="platform-card pc-yt">
+        <span class="platform-card-icon">▶️</span>
+        <div class="platform-card-name">YouTube</div>
+        <div class="platform-card-title">El Activo Pasivo que Paga por Años</div>
+        <p>Un video bien hecho hoy puede pagarte en 5 años. YouTube es el único activo digital que genera ingresos pasivos reales y crecientes.</p>
+        <ul class="platform-features">
+          <li>Shorts vs. Videos Largos: la estrategia correcta</li>
+          <li>YPP: cómo llegar más rápido a 4,000h</li>
+          <li>Los nichos con $15–$50 de RPM</li>
+          <li>Canales faceless 100% con IA</li>
+          <li>SEO para aparecer en Google + YouTube</li>
+          <li>Embudo YouTube → Producto propio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTENIDO ===== -->
+<section class="content-section" id="contenido">
+  <div class="container">
+    <span class="section-label">Lo que incluye</span>
+    <h2 class="section-title">Más de 100 páginas.<br><em>Cero relleno.</em></h2>
+
+    <div class="content-grid">
+      <div class="ebook-mockup">
+        <div class="ebook-cover">
+          <div class="ebook-cover-spine"></div>
+          <div class="ebook-cover-badge">GUÍA COMPLETA 2026</div>
+          <div class="ebook-cover-title">
+            DINERO
+            <span>DIGITAL</span>
+          </div>
+          <div class="ebook-cover-sub">El Sistema Completo para Convertir tus Redes Sociales en una Máquina de Ingresos</div>
+          <div class="ebook-cover-platforms">
+            <span class="ecp ecp-fb">Facebook</span>
+            <span class="ecp ecp-tt">TikTok</span>
+            <span class="ecp ecp-yt">YouTube</span>
+          </div>
+          <div class="ebook-pages-count">100+ PÁGINAS · 4 PARTES · EDICIÓN 2026</div>
+        </div>
+      </div>
+
+      <ul class="chapters-list">
+        <li class="chapter-item">
+          <div class="chapter-num">00</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-gold">Introducción</span>
+            <h4>La Economía del Creador — Por Qué Ahora</h4>
+            <p>Los 3 pilares de toda monetización exitosa. Mentalidad de negocio vs. hobby. Tiempos reales para ver resultados.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">01</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-fb">Facebook</span>
+            <h4>Facebook: La Mina de Oro Ignorada</h4>
+            <p>Las 5 fuentes de ingresos simultáneas. Requisitos exactos 2026. Configuración paso a paso. Cuánto gana cada nivel de creador.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">02</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-fb">Facebook</span>
+            <h4>Qué Contenido Funciona en Facebook</h4>
+            <p>Los 6 formatos más rentables. El algoritmo sin tecnicismos. Los nichos con más RPM para LATAM. Cuándo y con qué frecuencia publicar.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">03</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-fb">Facebook</span>
+            <h4>Cómo Generar Más en Facebook</h4>
+            <p>La estrategia de múltiples páginas. Afiliados desde el día 1. Cómo conseguir sponsors. Grupos de pago como ingreso recurrente.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">04</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-tt">TikTok</span>
+            <h4>TikTok: El Fenómeno Global</h4>
+            <p>Cómo funciona el algoritmo realmente. El problema de monetización por países. Creativity Program vs. Creator Fund. Cuánto paga TikTok de verdad.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">05</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-tt">TikTok</span>
+            <h4>Cómo Crear tu Cuenta de EE.UU.</h4>
+            <p>Número de teléfono virtual gratuito. VPN correcta para TikTok. Registro paso a paso. Errores que delatan tu ubicación. Cómo cobrar desde LATAM.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">06</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-yt">YouTube</span>
+            <h4>YouTube: El Motor de Ingresos Pasivos</h4>
+            <p>7 fuentes de ingresos simultáneas. Shorts vs. videos largos. YPP Nivel 1 y 2. Los nichos de $15–$50 RPM. Canales faceless con IA.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">07</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-gold">Sistema</span>
+            <h4>El Ecosistema de 3 Plataformas</h4>
+            <p>Cómo conectar las 3 plataformas para que se alimenten entre sí. "Create Once, Publish Everywhere". El calendario maestro semanal.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">08</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-gold">IA Tools</span>
+            <h4>El Arsenal Completo de IAs 2026</h4>
+            <p>+20 herramientas analizadas con precio, uso y comparativa. ElevenLabs, HeyGen, Opus Clip, CapCut, Descript, Canva AI y más.</p>
+          </div>
+        </li>
+        <li class="chapter-item">
+          <div class="chapter-num">09</div>
+          <div class="chapter-info">
+            <span class="chapter-tag ct-gold">Roadmap</span>
+            <h4>De $0 a $10,000/mes — El Plan de 12 Meses</h4>
+            <p>Los 4 errores fatales. Roadmap mes a mes con metas concretas. Cómo cobrar ingresos internacionales. Productos propios como cima de monetización.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALCULADORA ===== -->
+<section class="calculator-section">
+  <div class="container">
+    <span class="section-label">Potencial de ingresos</span>
+    <h2 class="section-title">¿Cuánto podrías ganar<br><em>con el sistema completo?</em></h2>
+    <p class="section-desc">Estimación conservadora para un creador que aplica las estrategias de este ebook a los 8 meses de empezar.</p>
+
+    <div class="calc-grid">
+      <div class="calc-card cc-fb">
+        <span class="calc-card-platform">Facebook</span>
+        <div class="calc-card-amount">$3,200</div>
+        <div class="calc-card-period">mensuales estimados</div>
+        <ul class="calc-sources">
+          <li><span>In-Stream Ads</span><span class="calc-source-val">$1,400</span></li>
+          <li><span>Stars + Lives</span><span class="calc-source-val">$600</span></li>
+          <li><span>Grupo de Pago</span><span class="calc-source-val">$800</span></li>
+          <li><span>Afiliados</span><span class="calc-source-val">$400</span></li>
+        </ul>
+      </div>
+
+      <div class="calc-card cc-tt">
+        <span class="calc-card-platform">TikTok</span>
+        <div class="calc-card-amount">$2,800</div>
+        <div class="calc-card-period">mensuales estimados</div>
+        <ul class="calc-sources">
+          <li><span>Creativity Program</span><span class="calc-source-val">$900</span></li>
+          <li><span>LIVE Gifts</span><span class="calc-source-val">$500</span></li>
+          <li><span>TikTok Shop</span><span class="calc-source-val">$900</span></li>
+          <li><span>Sponsorships</span><span class="calc-source-val">$500</span></li>
+        </ul>
+      </div>
+
+      <div class="calc-card cc-yt">
+        <span class="calc-card-platform">YouTube</span>
+        <div class="calc-card-amount">$4,000</div>
+        <div class="calc-card-period">mensuales estimados</div>
+        <ul class="calc-sources">
+          <li><span>AdSense</span><span class="calc-source-val">$1,800</span></li>
+          <li><span>Afiliados</span><span class="calc-source-val">$900</span></li>
+          <li><span>Membresías</span><span class="calc-source-val">$600</span></li>
+          <li><span>Sponsorships</span><span class="calc-source-val">$700</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="calc-total-row">
+      <div>
+        <div class="calc-total-label">Total estimado combinado</div>
+        <div class="calc-total-sub" style="color:var(--gray);font-size:13px;margin-top:6px;">Con estrategia completa a los 8–12 meses</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="calc-total-amount">$10,000</div>
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--gray);margin-top:4px;">/MES</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIOS ===== -->
+<section class="testimonials-section">
+  <div class="container">
+    <span class="section-label">Resultados reales</span>
+    <h2 class="section-title">Creadores que ya<br><em>lo están logrando</em></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Tenía 3 meses publicando en TikTok sin ganar nada. Con la guía de la cuenta de EE.UU. en 6 semanas ya estaba en el Creativity Program. Este ebook me cambió la perspectiva completamente."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🇨🇴</div>
+          <div>
+            <div class="author-name">Carlos M.</div>
+            <div class="author-location">Bogotá, Colombia</div>
+          </div>
+          <div class="author-income">+$1,800/mes</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"No sabía que Facebook pagaba tan bien. Seguí el sistema de múltiples páginas y hoy tengo 4 páginas generando ingresos. Literalmente cambió mi situación económica."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🇲🇽</div>
+          <div>
+            <div class="author-name">Daniela R.</div>
+            <div class="author-location">Guadalajara, México</div>
+          </div>
+          <div class="author-income">+$5,200/mes</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"El capítulo de YouTube me hizo entender que estaba en el nicho equivocado. Cambié a finanzas personales y mi RPM se multiplicó por 8. Ahora vivo de mi canal."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">🇵🇪</div>
+          <div>
+            <div class="author-name">Rodrigo V.</div>
+            <div class="author-location">Lima, Perú</div>
+          </div>
+          <div class="author-income">+$9,400/mes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CLASES EN VIVO ===== -->
+<section class="live-section" id="clases-vivo">
+  <div class="container">
+    <div class="live-hero">
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        Acceso Exclusivo para Compradores
+      </div>
+      <h2 class="live-main-title">
+        Clases en Vivo
+        <span>Incluidas</span>
+      </h2>
+      <p class="live-subtitle">No solo recibes el ebook. Recibes acceso a sesiones en vivo donde resolveremos dudas, veremos casos reales y aplicaremos las estrategias juntos en tiempo real.</p>
+    </div>
+
+    <div class="live-card-big">
+      <div class="live-card-big-inner">
+        <div class="live-icon-wrap">🎙️</div>
+        <div>
+          <div class="live-card-tag">
+            <div class="live-dot"></div>
+            Bono Estrella · Solo para Compradores
+          </div>
+          <div class="live-card-title">Sesiones en Directo de Monetización Real</div>
+          <p class="live-card-desc">Cada sesión es una clase práctica donde verás exactamente cómo aplicar las estrategias del ebook en cuentas reales. Sin teoría extra — acción en vivo, preguntas resueltas en el momento.</p>
+          <ul class="live-features">
+            <li>Sesiones grabadas disponibles si no puedes asistir en directo</li>
+            <li>Preguntas y respuestas en vivo — tu caso específico resuelto</li>
+            <li>Casos de éxito analizados en detalle cada semana</li>
+            <li>Estrategias actualizadas conforme cambian los algoritmos</li>
+            <li>Comunidad privada de creadores aplicando el mismo sistema</li>
+            <li>Acceso de por vida a todas las grabaciones anteriores</li>
+          </ul>
+          <a href="#precio" class="live-cta-btn">
+            <div class="live-dot"></div>
+            Quiero las Clases en Vivo →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="live-mini-grid">
+      <div class="live-mini-card">
+        <span class="live-mini-icon">📘</span>
+        <div class="live-mini-title">Clase en Vivo: Facebook</div>
+        <div class="live-mini-desc">Configuramos una página desde cero, activamos monetización y creamos el primer video que genera dinero. En tiempo real contigo.</div>
+      </div>
+      <div class="live-mini-card">
+        <span class="live-mini-icon">🎵</span>
+        <div class="live-mini-title">Clase en Vivo: TikTok USA</div>
+        <div class="live-mini-desc">Paso a paso: crear la cuenta de EE.UU., configurar el Creativity Program y publicar el primer video monetizable. Todo en directo.</div>
+      </div>
+      <div class="live-mini-card">
+        <span class="live-mini-icon">▶️</span>
+        <div class="live-mini-title">Clase en Vivo: YouTube</div>
+        <div class="live-mini-desc">Elegimos nicho, creamos el canal, optimizamos SEO y publicamos el primer video con estrategia completa. Juntos desde cero.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BONUS ===== -->
+<section class="bonus-section">
+  <div class="container">
+    <span class="section-label">Incluido sin costo adicional</span>
+    <h2 class="section-title">Los bonos que hacen<br><em>la diferencia</em></h2>
+
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <span class="bonus-value">BONO #1</span>
+        <span class="bonus-card-icon">🗓️</span>
+        <span class="bonus-card-tag">Plantilla</span>
+        <h3>Calendario Editorial para las 3 Plataformas</h3>
+        <p>El calendario semanal exacto que combina las 3 plataformas con solo 8 horas de trabajo real usando IA. Incluye los mejores horarios de publicación.</p>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-value">BONO #2</span>
+        <span class="bonus-card-icon">📋</span>
+        <span class="bonus-card-tag">Checklist</span>
+        <h3>La Checklist Maestra del Creador Digital</h3>
+        <p>Lista completa de todo lo que debes configurar antes de empezar a monetizar. Facebook, TikTok, YouTube, finanzas e IA — todo en una sola checklist.</p>
+      </div>
+      <div class="bonus-card">
+        <span class="bonus-value">BONO #3</span>
+        <span class="bonus-card-icon">🤖</span>
+        <span class="bonus-card-tag">Prompts</span>
+        <h3>Los Prompts de IA que Debes Guardar</h3>
+        <p>Los prompts exactos para generar guiones de YouTube, captions virales para TikTok y estrategia de contenido para Facebook usando Claude o ChatGPT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRECIO ===== -->
+<section class="pricing-section" id="precio">
+  <div class="container">
+    <span class="section-label">Inversión</span>
+    <h2 class="section-title">Un precio.<br><em>Sin suscripciones.</em></h2>
+    <p class="section-desc" style="margin: 0 auto;">Pago único. Acceso inmediato. Tuyo para siempre.</p>
+
+    <div class="pricing-card">
+      <div class="pricing-badge">🟢 Disponible Ahora · Acceso Inmediato</div>
+
+      <div class="pricing-original">Valor real: $97 USD</div>
+      <div class="pricing-price"><sup>$</sup>24,99</div>
+      <div class="pricing-currency">USD · Pago único · Sin renovaciones</div>
+
+      <ul class="pricing-includes">
+        <li>Ebook completo en formato HTML editable (100+ páginas)</li>
+        <li>Capítulo completo: Monetización en Facebook (3 capítulos)</li>
+        <li>Capítulo completo: TikTok + Guía cuenta de EE.UU. paso a paso</li>
+        <li>Capítulo completo: YouTube Shorts y Videos Largos</li>
+        <li>Arsenal de +20 herramientas de IA con comparativa y precios</li>
+        <li>Roadmap de 12 meses de $0 a $10,000/mes</li>
+        <li>🔴 <strong>Clases en VIVO de monetización incluidas</strong></li>
+        <li>Grabaciones de todas las sesiones anteriores</li>
+        <li>Comunidad privada de compradores</li>
+        <li>Bono: Calendario editorial para las 3 plataformas</li>
+        <li>Bono: Checklist maestra del creador digital</li>
+        <li>Bono: Prompts de IA listos para usar</li>
+        <li>Actualizaciones futuras sin costo adicional</li>
+      </ul>
+
+      <a href="#" class="pricing-cta">Quiero el Ebook Ahora — $24,99 USD →</a>
+
+      <div class="pricing-guarantee">
+        🔒 Pago seguro · Entrega inmediata por email
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <div class="container">
+    <span class="section-label">Preguntas frecuentes</span>
+    <h2 class="section-title">Todo lo que<br><em>necesitas saber</em></h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito experiencia previa para aplicar este ebook?</div>
+        <div class="faq-a">No. El ebook está estructurado para creadores desde cero. Cada capítulo empieza desde los fundamentos y avanza hasta estrategias avanzadas. Si ya tienes experiencia, simplemente salta a las secciones que te faltan.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿La guía de TikTok con cuenta de EE.UU. es legal?</div>
+        <div class="faq-a">Sí. TikTok permite que usuarios de cualquier país configuren cuentas para regiones específicas. Miles de creadores latinoamericanos lo hacen. El ebook explica el proceso completo y responsable.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Funciona si estoy en Ecuador, Colombia, Venezuela u otro país de LATAM?</div>
+        <div class="faq-a">Absolutamente. El ebook fue escrito específicamente para creadores latinoamericanos. Cada estrategia considera las restricciones y ventajas específicas de la región, incluyendo métodos de cobro disponibles en LATAM.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿En qué formato recibo el ebook?</div>
+        <div class="faq-a">En formato HTML, que puedes abrir en cualquier navegador, imprimir como PDF de alta calidad, o modificar a tu gusto con cualquier editor de texto. Es completamente editable.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tiempo tarda en verse resultados?</div>
+        <div class="faq-a">Los primeros ingresos (afiliados y Stars de Facebook) pueden llegar en el mes 1. Ingresos de $1,000+/mes son realistas entre el mes 3 y 5 siguiendo el sistema. La meta de $10,000/mes se alcanza típicamente entre el mes 8 y 12.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito pagar muchas herramientas de IA para aplicarlo?</div>
+        <div class="faq-a">No. El ebook incluye alternativas gratuitas para casi cada herramienta. El stack mínimo efectivo cuesta entre $0 y $20/mes. El stack completo avanzado cuesta alrededor de $112/mes, que se recupera con los primeros ingresos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== URGENCIA ===== -->
+<section class="urgency-section">
+  <div class="container">
+    <h2 class="urgency-title">Cada semana sin estrategia<br>es <em>dinero que pierdes.</em></h2>
+    <p class="urgency-sub">Los algoritmos favorecen a quienes publican consistentemente HOY. El creador que empieza esta semana tendrá 6 meses de ventaja sobre el que empiece el próximo mes.</p>
+    <a href="#precio" class="btn-primary" style="display:inline-block;">Empezar Ahora por $24,99 →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Dinero Digital</div>
+  <div class="footer-tagline">El sistema completo para monetizar Facebook, TikTok y YouTube.</div>
+  <div class="footer-links">
+    <a href="#">Inicio</a>
+    <a href="#contenido">Contenido</a>
+    <a href="#precio">Precio</a>
+  </div>
+  <div class="footer-copy">© 2026 Dinero Digital · Todos los derechos reservados</div>
+</footer>
+
+</body>
+</html>
